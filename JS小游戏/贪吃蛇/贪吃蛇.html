@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>贪吃蛇</title>
+  <style>
+    .map {
+			width: 800px;
+			height: 600px;
+			background-color: #ccc;
+			position: relative;
+			margin: 50px auto 0;
+		}
+  </style>
+</head>
+<body>
+  <div class="map"></div>
+  
+  <script src="js/food.js"></script>
+  <script src="js/snake.js"></script>
+  <script>
+    var map = document.querySelector('.map');
+    var food = new Food(20, 20, 0, 0, 'red');
+    var snake = new Snake(20, 20, 'right');
+
+    food.init(map);
+    snake.init(map);
+
+    var timeId = setInterval(function () {
+      snake.move(food, map);
+      snake.init(map);
+
+      // 定义边界
+      var maxX = map.offsetWidth / snake.width;
+      var maxY = map.offsetHeight / snake.height;
+      var headX = snake.body[0].x;
+      var headY = snake.body[0].y;
+
+      if (headX <= 0) {
+        snake.body[0].x = maxX - 1;
+      }
+      if (headX >= maxX - 1) {
+        snake.body[0].x = 0;
+      }
+      if (headY <= 0) {
+        snake.body[0].y = maxY - 1;
+      }
+      if (headY >= maxY - 1) {
+        snake.body[0].y = 0;
+      }
+    }, 200);
+
+    document.addEventListener('keydown', function (e) {
+      switch (e.keyCode) {
+        case 37:
+          snake.direction = 'left';
+          break;
+        case 38:
+          snake.direction = 'top';
+          break;
+        case 39:
+          snake.direction = 'right';
+          break;
+        case 40:
+          snake.direction = 'bottom';
+          break;
+      }
+    });
+  </script>
+</body>
+</html>
