@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>手风琴</title>
+  <style>
+    * {margin: 0; padding: 0;}
+    ul {list-style: none;}
+    #box {
+      width: 1200px;
+      height: 400px;
+      margin: 50px auto;
+      border: 1px solid red;
+      overflow: hidden;
+    }
+    #box ul {
+      width: 1200px;
+    }
+    #box ul li {
+      width: 240px;
+      height: 400px;
+      float: left;
+      background-position-x: -30px;
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+
+  <script src="https://ossweb-img.qq.com/images/js/jquery/jquery-1.9.1.min.js"></script>
+  <script>
+    var list = $('#box li');
+
+    list.each(function(index, item) {
+      $(this).css({
+        'backgroundImage': 'url(image/' + (index + 1) + '.jpg'
+      });
+      $(this).on('mouseover', mouseoverHandler)
+      $(this).on('mouseout', mouseouthandler)
+    });
+
+    // 鼠标移入执行
+    function mouseoverHandler() {
+      list.each(function(index, item) {
+        $(this).stop().animate({
+          'width': '100px'
+        }, 200)
+      });
+      $(this).stop().animate({
+        'width': '800px'
+      }, 200);
+    }
+
+    // 鼠标移出执行
+    function mouseouthandler() {
+      list.each(function(index, item) {
+        $(this).stop().animate({
+          'width': '240px'
+        }, 400)
+      });
+    }
+  </script>
+</body>
+</html>
