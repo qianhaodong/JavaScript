@@ -82,6 +82,7 @@
 
       // 获取事件对象
       var e = event || window.event;
+      // console.dir(e.eventPhase)
 
       var x = e.clientX - 100 - mask.offsetWidth / 2;
       var y = e.clientY - 100 -mask.offsetHeight / 2;
@@ -111,9 +112,9 @@
     }
     
     // 添加事件
-    box.addEventListener('mouseover', show, true);
-    box.addEventListener('mouseout', hide, true);
-    small.addEventListener('mousemove', move, true);
+    box.addEventListener('mouseover', show);
+    box.addEventListener('mouseout', hide);
+    small.addEventListener('mousemove', move);
   </script>
 </body>
 </html>
