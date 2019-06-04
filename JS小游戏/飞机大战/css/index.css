@@ -1,0 +1,92 @@
+/* css-reset */
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;border: none;}
+table{border-collapse:collapse;border-spacing:0}
+fieldset,img{border:0}
+address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:normal}
+ol,ul{list-style:none}
+caption,th{text-align:left}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
+abbr,acronym{border:0;font-variant:normal}
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit}
+input,textarea,select{*font-size:100%}
+a{text-decoration: none; color: inherit}
+body {font-size: 16px;}
+.content {
+  width: 320px;
+  height: 568px;
+  margin: 50px auto;
+}
+
+.start {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url(../image/bg-cover.png) no-repeat;
+}
+
+.start .btn-start {
+  position: absolute;
+  left: 50%;
+  bottom: 80px;
+  margin-left: -50px;
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid #000;
+  font-size: 16px;
+  outline: none;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url(../image/bg-start.png);
+  overflow: hidden;
+  display: none;
+}
+
+.main .scoretext {
+  padding: 5px 0 0 10px;
+}
+
+.main .gameover {
+  position: absolute;
+  left: 50%;
+  bottom: 160px;
+  margin-left: -90px;
+  width: 180px;
+  border: 1px solid #000;
+  background-color: #fff;
+  text-align: center;
+  display: none;
+  z-index: 10;
+}
+
+.main .gameover li {
+  width: 180px;
+  height: 42px;
+  line-height: 42px;
+  border-top: 1px solid #333;
+  font-weight: bold;
+}
+
+.main .gameover li:first-child {
+  border-top: none;
+}
+
+.main .gameover li .btn-back {
+  width: 100px;
+  height: 30px;
+  border: 1px solid #666;
+  border-radius: 15px;
+  font-weight: normal;
+  cursor: pointer;
+  outline: none;
+}
+
+.main img {
+  position: absolute;
+}
