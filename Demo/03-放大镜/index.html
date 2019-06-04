@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {margin: 0; padding: 0;}
+    img {vertical-align: bottom;}
+    .box {
+      position: relative;
+      width: 200px;
+      margin: 100px 0 0 100px;
+      border: 1px solid #666;
+    }
+    .small-img {
+      width: 100%;
+    }
+    .mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      background-color: rgba(255, 255, 0, 0.4);
+      cursor: move;
+      display: none;
+    }
+    .big {
+      position: absolute;
+      top: 0;
+      left: 210px;
+      width: 400px;
+      height: 400px;
+      border: 1px solid #666;
+      overflow: hidden;
+      display: none;
+    }
+    .big-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 800px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="small">
+      <img src="./img/small.png" class="small-img" alt="">
+      <div class="mask"></div>
+    </div>
+    <div class="big">
+      <img src="./img/big.jpg" class="big-img" alt="">
+    </div>
+  </div>
+
+  <script>
+    // 获取元素
+    function getElem(selector) {
+      return document.querySelector(selector);
+    }
+
+    var box = getElem('.box');
+    var small = getElem('.small');
+    var mask = getElem('.mask');
+    var big = getElem('.big');
+    var bigImg = getElem('.big-img');
+
+    function show() {
+      mask.style.display = 'block';
+      big.style.display = 'block';
+    }
+
+    function hide() {
+      mask.style.display = 'none';
+      big.style.display = 'none';
+    }
+
+    function move() {
+
+      // 获取事件对象
+      var e = event || window.event;
+
+      var x = e.clientX - 100 - mask.offsetWidth / 2;
+      var y = e.clientY - 100 -mask.offsetHeight / 2;
+      
+      // 横、纵坐标最小值
+      x = x < 0 ? 0 : x;
+      y = y < 0 ? 0 : y;
+
+      // 横、纵坐标最大值
+      x = x > small.offsetWidth - mask.offsetWidth ? small.offsetWidth - mask.offsetWidth : x;
+      y = y > small.offsetHeight -mask.offsetHeight ? small.offsetHeight - mask.offsetHeight : y;
+
+      // 为遮挡层的 left 和 top 赋值
+      mask.style.left = x + 'px';
+      mask.style.top = y + 'px';
+
+      // 遮挡层的移动距离 / 大图的移动距离 = 遮挡层最大移动距离 / 大图最大移动距离
+      var rate = (small.offsetWidth - mask.offsetWidth) / (bigImg.offsetWidth - big.offsetWidth);
+      
+      // 大图的横、纵向移动距离
+      var bigX = x / rate;
+      var bigY = y / rate;
+
+      // 设置大图移动
+      bigImg.style.left = -bigX + 'px';
+      bigImg.style.top = -bigY + 'px';
+    }
+    
+    // 添加事件
+    box.addEventListener('mouseover', show, true);
+    box.addEventListener('mouseout', hide, true);
+    small.addEventListener('mousemove', move, true);
+  </script>
+</body>
+</html>
